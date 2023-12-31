@@ -9,7 +9,7 @@ openai.api_key = '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'
 
 
 # Find more emojis here: https://www.webfx.com/tools/emoji-cheat-sheet/
-st.set_page_config(page_title="Text Improver", page_icon=":memo:", layout="wide")
+st.set_page_config(page_title="Text Improver", layout="centered")
 
 
 def load_lottieurl(url):
@@ -47,31 +47,28 @@ with st.container():
 
 # ---- PROJECTS ----
 with st.container():
-    st.write("---")  # Moved inside the container
+    st.write("---") 
+    grammarColumn, coherencyColumn, cohesionColumn, submitColumn = st.columns((1, 1, 1, 1))
+
+    with grammarColumn: 
+        grammar = st.checkbox('Correct Grammar')
+    with coherencyColumn:
+        coherency = st.checkbox('Improve Coherency')
+    with cohesionColumn:
+        cohesion = st.checkbox('Enhance Cohesion')
+    with submitColumn:
+        submitted = st.button('Submit Text')
     
-    inputTextColumn, settingsColumn, submitColumn, outputTextColumn = st.columns((4, 1, 1, 4))
+with st.container():
+    st.write("---")      # Moved inside the container
+    
+    inputTextColumn, outputTextColumn = st.columns((1,1))
     
     with inputTextColumn:
         st.header("Your Old Text")
         text_input_area = st.text_area("Enter your text", height=500, max_chars=2000)
     
-    with settingsColumn:
-        #st.markdown("<h1 style='text-align: center; color: white; font-size: 30px;'>Settings</h1>", unsafe_allow_html=True)
-        st.write('##')
-        st.write('##')
-        st.write('##')
-        grammar = st.checkbox('Correct Grammar')
-        coherency = st.checkbox('Improve Coherency')
-        cohesion = st.checkbox('Enhance Cohesion')
-
-    with submitColumn:
-        #st.header("Submit")
-        st.write('##')
-        st.write('##')
-        st.write('##')
-        st.write('##')
-        submitted = st.button('Submit Text')
-
+    
     if(submitted):
         #print('apertei botao')
         if(text_input_area!=''):
